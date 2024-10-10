@@ -1,0 +1,25 @@
+name: Run main.py
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 18 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Python
+      run: sudo apt-get install -y python3 python3-pip
+
+    - name: Install dependencies
+      run: pip3 install requests
+
+    - name: Run main.py
+      run: python3 main.py
